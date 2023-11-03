@@ -6,9 +6,9 @@ const sequelize = new Sequelize('aula', null, null, {
   port: 3306,
   replication: {
     read: [
-      { host: '34.73.29.229', username: 'usr_metagames', password: process.env.READ_DB_PW },
+      { host: '34.73.29.229', username: 'usr_metagames', password: 'fatec123' },
     ],
-    write: { host: '34.23.151.195', username: 'usr_metagames', password: process.env.WRITE_DB_PW }
+    write: { host: '34.23.151.195', username: 'usr_metagames', password: 'fatec123' }
   },
   pool: {
     max: 20,
@@ -59,7 +59,7 @@ const Produto = sequelize.define('produto', {
     const descricao = `Produto${randomNumber}`;
     const categoria = 'Games';
     const valor = (Math.random() * 1000).toFixed(2);
-    const criado_por = `Usuário${i}`;
+    const criado_por = `MetaGames`;
 
     const insertedProduct = await Produto.create({
       descricao,
