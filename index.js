@@ -1,14 +1,14 @@
 const { Sequelize, DataTypes } = require('sequelize');
 require('dotenv').config();
 
-const sequelize = new Sequelize('aula', null, null, {
+const sequelize = new Sequelize(process.env.DB_NAME, null, null, {
   dialect: 'mysql',
-  port: 3306,
+  port: process.env.DB_PORT,
   replication: {
     read: [
-      { host: '34.73.29.229', username: 'usr_metagames', password: 'fatec123' },
+      { host: process.env.READ_DB_HOST, username: process.env.DB_USERNAME, password: process.env.READ_DB_PASS },
     ],
-    write: { host: '34.23.151.195', username: 'usr_metagames', password: 'fatec123' }
+    write: { host: process.env.WRITE_DB_HOST, username: process.env.DB_USERNAME, password: process.env.WRITE_DB_PASS }
   },
   pool: {
     max: 20,
@@ -16,7 +16,7 @@ const sequelize = new Sequelize('aula', null, null, {
   },
 });
 
-const Produto = sequelize.define('produto', {
+const Produto = sequelize.define(process.env.DB_TABLE, {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
